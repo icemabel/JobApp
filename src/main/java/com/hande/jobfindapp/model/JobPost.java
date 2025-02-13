@@ -1,9 +1,6 @@
 package com.hande.jobfindapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jdk.jfr.Enabled;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +11,6 @@ import java.util.List;
 
 @Data
 @Entity
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class JobPost {
@@ -25,5 +21,7 @@ public class JobPost {
     private String postProfile;
     private String postDesc;
     private Integer reqExperience;
+
+    @ElementCollection
     private List<String> postTechStack;
 }

@@ -12,4 +12,6 @@ public interface JobService {
     JobPost saveJobPost(JobPost jobPost);
     void deleteJobPostById(long id);
     JobPost updateJobPost(JobPost jobPost);
+
+    void load();
 }

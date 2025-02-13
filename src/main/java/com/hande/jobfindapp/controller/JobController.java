@@ -16,7 +16,7 @@ import java.util.List;
 public class JobController {
 
     @Autowired
-    private final JobService jobService;
+    private JobService jobService;
 
     @GetMapping("/jobs")
     public List<JobPost> findAll() {
@@ -41,5 +41,10 @@ public class JobController {
     @PutMapping("/jobs")
     public JobPost updateJob(JobPost jobPost) {
         return jobService.updateJobPost(jobPost);
+    }
+
+    public String loadData(){
+        jobService.load();
+        return "success";
     }
 }
