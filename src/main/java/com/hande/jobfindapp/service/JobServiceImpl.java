@@ -4,6 +4,7 @@ import com.hande.jobfindapp.model.JobPost;
 import com.hande.jobfindapp.repo.JobRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,7 +14,8 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class JobServiceImpl implements JobService {
-    private final JobRepo jobRepo;
+    @Autowired
+    private JobRepo jobRepo;
 
     @Override
     public List<JobPost> returnAllJobPosts() {
@@ -40,7 +42,7 @@ public class JobServiceImpl implements JobService {
         return jobRepo.save(jobPost);
     }
 
-    @Override
+    /*@Override
     public void load() {
         List<JobPost> jobs =
                 new ArrayList<>(List.of(
@@ -51,5 +53,5 @@ public class JobServiceImpl implements JobService {
                         new JobPost(5, "UX Designer", "Shape the user experience with your creative design skills.", 3, List.of("UI/UX Design", "Adobe XD", "Prototyping"))
                 ));
         jobRepo.saveAll(jobs);
-    }
+    }*/
 }

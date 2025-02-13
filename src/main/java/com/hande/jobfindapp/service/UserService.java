@@ -10,8 +10,9 @@ public interface UserService {
 
     UserProfile returnUserById(long id);
     UserProfile saveUser(UserProfile user);
-    void deleteJobPostById(long id);
+    void deleteUserById(long id);
     UserProfile updateUser(UserProfile user);
 
-    void loadUsers();
+
+    //void loadUsers();
 }

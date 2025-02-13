@@ -13,5 +13,5 @@ public interface JobService {
     void deleteJobPostById(long id);
     JobPost updateJobPost(JobPost jobPost);
 
-    void load();
+    //void load();
 }

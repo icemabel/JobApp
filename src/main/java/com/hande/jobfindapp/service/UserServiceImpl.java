@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteJobPostById(long id) {
+    public void deleteUserById(long id) {
         userRepo.deleteById(id);
     }
 
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
         return userRepo.save(user);
     }
 
-    @Override
+    /*@Override
     public void loadUsers() {
         List<UserProfile> users = new ArrayList<>(List.of(
                 UserProfile.builder()
@@ -77,5 +77,5 @@ public class UserServiceImpl implements UserService {
         ));
 
         userRepo.saveAll(users);
-    }
+    }*/
 }
