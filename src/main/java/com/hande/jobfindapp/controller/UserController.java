@@ -1,10 +1,14 @@
 package com.hande.jobfindapp.controller;
 
 import com.hande.jobfindapp.model.UserProfile;
+import com.hande.jobfindapp.service.JwtService;
 import com.hande.jobfindapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +20,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    JwtService jwtService;
 
     @GetMapping("/users")
     public List<UserProfile> findAll() {
@@ -46,4 +56,17 @@ public class UserController {
     public UserProfile registerUser(@RequestBody UserProfile userProfile) {
         return userProfile;
     }
+
+    @PostMapping("/login")
+    public String userLogin(@RequestBody UserProfile userProfile) {
+        Authentication authentication = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(userProfile.getUsername(), userProfile.getPassword()));
+
+        if (authentication.isAuthenticated())
+            return jwtService.generateToken(userProfile.getUsername());
+        else
+            return "Login Failed";
+    }
+
+
 }
