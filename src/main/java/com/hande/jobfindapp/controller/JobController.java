@@ -4,6 +4,7 @@ import com.hande.jobfindapp.model.JobPost;
 import com.hande.jobfindapp.service.JobService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.dialect.unique.CreateTableUniqueDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin(origins = "http://localhost:3000")
 public class JobController {
     private final JobService jobService;
 
@@ -27,7 +29,7 @@ public class JobController {
     }
 
     @PostMapping("/jobs")
-    public JobPost saveJob(JobPost jobPost) {
+    public JobPost saveJob(@RequestBody JobPost jobPost) {
         return jobService.saveJobPost(jobPost);
     }
 
@@ -37,12 +39,17 @@ public class JobController {
     }
 
     @PutMapping("/jobs")
-    public JobPost updateJob(JobPost jobPost) {
+    public JobPost updateJob(@RequestBody JobPost jobPost) {
         return jobService.updateJobPost(jobPost);
     }
 
     public String loadData(){
         jobService.load();
         return "success";
+    }
+
+    @GetMapping("/jobs/keyword/{keyword}")
+    public List<JobPost> searchByKeyword(@PathVariable("keyword") String keyword){
+        return jobService.search(keyword);
     }
 }

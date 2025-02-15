@@ -16,6 +16,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin(origins = "http://localhost:3000")
 public class CompanyController {
     private final CompanyService companyService;
 
@@ -32,7 +33,7 @@ public class CompanyController {
     }
 
     @PostMapping("/company")
-    public CompanyProfile saveJob(CompanyProfile company) {
+    public CompanyProfile saveJob(@RequestBody CompanyProfile company) {
         return companyService.saveCompany(company);
     }
 
@@ -42,7 +43,7 @@ public class CompanyController {
     }
 
     @PutMapping("/company")
-    public CompanyProfile updateJob(CompanyProfile company) {
+    public CompanyProfile updateJob(@RequestBody CompanyProfile company) {
         return companyService.updateCompany(company);
     }
 

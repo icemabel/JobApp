@@ -14,4 +14,6 @@ public interface JobService {
     JobPost updateJobPost(JobPost jobPost);
 
     void load();
+
+    List<JobPost> search(String keyword);
 }

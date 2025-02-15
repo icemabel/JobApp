@@ -4,7 +4,6 @@ import com.hande.jobfindapp.model.JobPost;
 import com.hande.jobfindapp.repo.JobRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -53,5 +52,10 @@ public class JobServiceImpl implements JobService {
                         new JobPost(5, "UX Designer", "Shape the user experience with your creative design skills.", 3, List.of("UI/UX Design", "Adobe XD", "Prototyping"))
                 ));
         jobRepo.saveAll(jobs);
+    }
+
+    @Override
+    public List<JobPost> search(String keyword) {
+        return jobRepo.findByPostProfileContainingOrPostDescContaining(keyword, keyword);
     }
 }

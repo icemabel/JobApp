@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     private final UserService userService;
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public UserProfile saveUser(UserProfile userProfile) {
+    public UserProfile saveUser(@RequestBody UserProfile userProfile) {
         return userService.saveUser(userProfile);
     }
 
@@ -45,7 +46,7 @@ public class UserController {
     }
 
     @PutMapping("/users")
-    public UserProfile updateUser(UserProfile userProfile) {
+    public UserProfile updateUser(@RequestBody UserProfile userProfile) {
         return userService.updateUser(userProfile);
     }
 
