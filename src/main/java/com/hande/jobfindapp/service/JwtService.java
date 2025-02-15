@@ -61,7 +61,7 @@ public class JwtService {
 
     public String extractUserName(String token) {
         // extract the username from jwt token
-        return extractClaim(token, Claims::getSubject);
+        return extractClaim(token, Claims::getSubject); //getSubject -> to get user
     }
 
     private <T> T extractClaim(String token, Function<Claims, T> claimResolver) {

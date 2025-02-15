@@ -18,14 +18,11 @@ import java.util.List;
 @Slf4j
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired
-    AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    JwtService jwtService;
+    private final JwtService jwtService;
 
     @GetMapping("/users")
     public List<UserProfile> findAll() {

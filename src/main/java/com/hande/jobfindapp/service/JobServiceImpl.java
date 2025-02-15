@@ -14,8 +14,8 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class JobServiceImpl implements JobService {
-    @Autowired
-    private JobRepo jobRepo;
+
+    private final JobRepo jobRepo;
 
     @Override
     public List<JobPost> returnAllJobPosts() {
@@ -42,7 +42,7 @@ public class JobServiceImpl implements JobService {
         return jobRepo.save(jobPost);
     }
 
-    /*@Override
+    @Override
     public void load() {
         List<JobPost> jobs =
                 new ArrayList<>(List.of(
@@ -53,5 +53,5 @@ public class JobServiceImpl implements JobService {
                         new JobPost(5, "UX Designer", "Shape the user experience with your creative design skills.", 3, List.of("UI/UX Design", "Adobe XD", "Prototyping"))
                 ));
         jobRepo.saveAll(jobs);
-    }*/
+    }
 }

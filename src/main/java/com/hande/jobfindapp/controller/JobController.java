@@ -11,13 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class JobController {
     private final JobService jobService;
-    public JobController(JobService jobService) {
-        this.jobService = jobService;
-    }
 
     @GetMapping("/jobs")
     public List<JobPost> findAll() {
@@ -44,8 +41,8 @@ public class JobController {
         return jobService.updateJobPost(jobPost);
     }
 
-    /*public String loadData(){
+    public String loadData(){
         jobService.load();
         return "success";
-    }*/
+    }
 }

@@ -16,8 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserRepo userRepo;
+
+    private final UserRepo userRepo;
 
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
